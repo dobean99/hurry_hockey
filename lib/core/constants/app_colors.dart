@@ -10,7 +10,7 @@ class AppColors {
   static const Color blackShader = Colors.black26;
 
   static const Color bgButtonColor = Color(0xFF532020);
-  static const Color textTitleColor = Color(0xFFFFA91F);
+  static const Color textTitleColor = Color(0xFF333E7B);
   static const Color timerBarColor = Color(0xFFFFCC4C);
 
   static const Color lightTextColor = Color.fromRGBO(122, 134, 154, 1);

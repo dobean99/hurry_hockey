@@ -107,5 +107,17 @@
   "settings": "НАСТРОЙКИ",
   "@settings": {
     "description": "Settings"
+  },
+  "gameInstructions": "Перепрыгивайте через опасные препятствия, чтобы пройти полосу препятствий за минуту и успеть к началу хоккейного матча. Не подведите своих товарищей!",
+  "@gameInstructions": {
+    "description": "Jump over dangerous obstacles to complete the obstacle course in a minute and be in time for the start of the hockey match. Don't let your comrades down!"
+  },
+  "congrats": "Поздравляем! \nВы успеваете к началу матча!",
+  "@congrats": {
+    "description": "Congrats! You are in time for the match!"
+  },
+  "tryAgain": "Вы не успеваете Попробуйте \nеще раз!",
+  "@tryAgain": {
+    "description": "You are out of time Try again!"
   }
 }

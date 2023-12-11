@@ -32,23 +32,17 @@ class SettingsScreen extends StatelessWidget {
                       selector: (_, settings) => settings.bgm,
                       builder: (context, bgm, __) {
                         return CircleStrokeButton(
-                          width: 84,
                           isEnable: bgm,
                           onPressed: () {
                             bool newValue = !bgm;
                             Provider.of<Settings>(context, listen: false).bgm =
                                 newValue;
                           },
-                          child: Image.asset(PngAssets.volumeIcon),
+                          iconPath: PngAssets.volumeIcon,
                         );
                       }),
                   const SizedBox(
                     width: 40,
-                  ),
-                  CircleStrokeButton(
-                    width: 84,
-                    onPressed: () {},
-                    child: Image.asset(PngAssets.musicIcon),
                   ),
                   const SizedBox(
                     width: 40,
@@ -61,8 +55,7 @@ class SettingsScreen extends StatelessWidget {
                         Locale locale = _changeLanguage(lang);
                         context.read<LocaleProvider>().setLocale(locale);
                       },
-                      width: 84,
-                      child: Image.asset(provider.getIcon(lang)),
+                      iconPath: provider.getIcon(lang),
                     );
                   })
                 ],
@@ -75,13 +68,12 @@ class SettingsScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 15.0, right: 30),
               child: CircleStrokeButton(
-                width: 54,
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const MainMenu(),
                   ));
                 },
-                child: Image.asset(PngAssets.homeIcon),
+                iconPath: PngAssets.homeIcon,
               ),
             ),
           ),

@@ -26,12 +26,6 @@ class StrokeText extends StatelessWidget {
               ..color = AppColors.textTitleColor,
           ),
         ),
-        // ShaderMask(
-        //   shaderCallback: (bounds) {
-        //     return gradient.createShader(
-        //       Rect.fromLTWH(0, 0, bounds.width, bounds.height),
-        //     );
-        //   },
         Text(
           text.toUpperCase(),
           style: const TextStyle(

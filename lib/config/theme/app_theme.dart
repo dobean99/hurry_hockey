@@ -23,7 +23,7 @@ class AppTheme {
           borderRadius: BorderRadius.circular(6),
         ),
       ),
-      fontFamily: "Inter",
+      fontFamily: "CeraPro",
       inputDecorationTheme: InputDecorationTheme(
         fillColor: Colors.white,
         border: inputBorder,
@@ -37,7 +37,7 @@ class AppTheme {
 
 //dark theme
   static final ThemeData darkTheme = ThemeData(
-    fontFamily: "Inter",
+    fontFamily: "CeraPro",
     textTheme: const TextTheme(
       displayLarge: TextStyle(
         fontSize: AppConstants.titleFontSize,

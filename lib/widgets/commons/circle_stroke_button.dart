@@ -1,45 +1,25 @@
 import 'package:hurry_hockey/core/constants/app_constants.dart';
 import 'package:flutter/material.dart';
-import 'package:hurry_hockey/core/constants/app_colors.dart';
 
 class CircleStrokeButton extends StatelessWidget {
   final VoidCallback? onPressed;
-  final Widget child;
+  final String iconPath;
   final double? width;
   final bool isEnable;
 
   const CircleStrokeButton({
     super.key,
-    required this.child,
     this.onPressed,
     this.width,
     this.isEnable = true,
+    required this.iconPath,
   });
 
   @override
   Widget build(BuildContext context) {
     return Opacity(
       opacity: isEnable ? 1 : 0.5,
-      child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 10),
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: AppColors.bgButtonColor,
-          // gradient: AppColors.blackToGrey,
-          border: Border.all(
-            color: AppColors.whiteColor,
-            width: AppConstants.borderWidth,
-          ),
-        ),
-        child: InkWell(
-          onTap: onPressed,
-          child: SizedBox(
-            width: width ?? AppConstants.buttonWidthDefault,
-            height: width ?? AppConstants.buttonWidthDefault,
-            child: child,
-          ),
-        ),
-      ),
+      child: InkWell(onTap: onPressed, child: Image.asset(iconPath)),
     );
   }
 }

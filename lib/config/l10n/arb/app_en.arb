@@ -107,5 +107,17 @@
   "settings": "Settings",
   "@settings": {
     "description": "Settings"
+  },
+  "gameInstructions": "Jump over dangerous obstacles to complete the obstacle course in a minute and be in time for the start of the hockey match. Don't let your comrades down!",
+  "@gameInstructions": {
+    "description": "Jump over dangerous obstacles to complete the obstacle course in a minute and be in time for the start of the hockey match. Don't let your comrades down!"
+  },
+  "congrats": "Congrats!\nYou are in time for the match!",
+  "@congrats": {
+    "description": "Congrats! You are in time for the match!"
+  },
+  "tryAgain": "You are out of time \nTry again!",
+  "@tryAgain": {
+    "description": "You are out of time Try again!"
   }
 }

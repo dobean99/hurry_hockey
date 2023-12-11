@@ -16,44 +16,47 @@ class PauseMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.blackColor.withAlpha(100),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          StrokeText(text: context.l10n!.pause),
-          const SizedBox(
-            height: 60,
+      body: Center(
+        child: Container(
+          height: 200,
+          width: 360,
+          decoration: BoxDecoration(
+            color: AppColors.whiteColor.withOpacity(0.5),
           ),
-          Row(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleStrokeButton(
-                width: 86,
-                child: Image.asset(PngAssets.homeIcon),
-                onPressed: () {
-                  game.overlays.remove(PauseMenu.id);
-                  game.reset();
-                  game.resumeEngine();
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => const MainMenu(),
-                    ),
-                  );
-                },
-              ),
-              const SizedBox(
-                width: 100,
-              ),
-              CircleStrokeButton(
-                width: 86,
-                child: Image.asset(PngAssets.arrowRightIcon),
-                onPressed: () {
-                  game.resumeEngine();
-                  game.overlays.remove(PauseMenu.id);
-                },
-              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleStrokeButton(
+                    iconPath: PngAssets.homeIcon,
+                    onPressed: () {
+                      game.overlays.remove(PauseMenu.id);
+                      game.reset();
+                      game.resumeEngine();
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const MainMenu(),
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(
+                    width: 100,
+                  ),
+                  CircleStrokeButton(
+                    iconPath: PngAssets.arrowBackIcon,
+                    onPressed: () {
+                      game.resumeEngine();
+                      game.overlays.remove(PauseMenu.id);
+                    },
+                  ),
+                ],
+              )
             ],
-          )
-        ],
+          ),
+        ),
       ),
     );
   }

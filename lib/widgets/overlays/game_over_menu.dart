@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:hurry_hockey/config/assets/png_assets.dart';
 import 'package:hurry_hockey/config/l10n/l10n.dart';
 import 'package:hurry_hockey/core/constants/app_colors.dart';
 import 'package:hurry_hockey/game/hurry_hockey.dart';
 import 'package:hurry_hockey/screens/main_menu.dart';
+import 'package:hurry_hockey/widgets/commons/base_layout.dart';
+import 'package:hurry_hockey/widgets/commons/circle_stroke_button.dart';
 import 'package:hurry_hockey/widgets/commons/stroke_text.dart';
-import 'package:hurry_hockey/widgets/overlays/home_button.dart';
-import '../../models/models.dart';
 
 class GameOverMenu extends StatelessWidget {
   static const String id = 'GameOverMenu';
@@ -16,165 +15,71 @@ class GameOverMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final score = Provider.of<Score>(context, listen: false);
-    return Scaffold(
-      backgroundColor: AppColors.blackColor.withAlpha(100),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            StrokeText(text: _getTextTitle(context)),
-            const SizedBox(
-              height: 10,
-            ),
-            Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    PngAssets.boardBackground,
-                  ),
-                  fit: BoxFit.cover,
-                ),
+    return BaseLayout(
+      child: Center(
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppColors.whiteColor,
+          ),
+          constraints: BoxConstraints(
+              minWidth: 0,
+              minHeight: 0,
+              maxWidth: MediaQuery.sizeOf(context).width - 200,
+              maxHeight: MediaQuery.sizeOf(context).height - 100),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              StrokeText(
+                text: context.l10n!.youWin,
               ),
-              child: SizedBox(
-                height: 176,
-                width: 300,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                      top: 15.0, left: 25.0, bottom: 30, right: 15),
-                  child: Theme(
-                    data: Theme.of(context).copyWith(
-                      dividerColor: Colors.transparent,
-                      dividerTheme: const DividerThemeData(
-                        color: Colors.transparent,
-                        space: 0,
-                        thickness: 0,
-                        indent: 0,
-                        endIndent: 0,
-                      ),
-                    ),
-                    child: DataTable(
-                      horizontalMargin: 0,
-                      dataRowMaxHeight: 30,
-                      dataRowMinHeight: 20,
-                      columnSpacing: 0,
-                      dividerThickness: 0.0,
-                      columns: <DataColumn>[
-                        const DataColumn(
-                          label: Text(
-                            '',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                        ),
-                        DataColumn(
-                          label: Text(
-                            context.l10n!.rounds,
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ),
-                        DataColumn(
-                          label: Text(
-                            context.l10n!.points,
-                            style: const TextStyle(fontSize: 16),
-                          ),
-                        ),
-                      ],
-                      rows: <DataRow>[
-                        DataRow(
-                          cells: <DataCell>[
-                            DataCell(
-                              Text(
-                                context.l10n!.player,
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ),
-                            DataCell(
-                              Text(
-                                game.playerRounds.toString(),
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ),
-                            DataCell(
-                              Center(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text(
-                                      game.playerScore.toString(),
-                                      style: const TextStyle(fontSize: 16),
-                                    ),
-                                    _checkWinner()
-                                        ? Image.asset(PngAssets.cupIcon)
-                                        : Container(),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        DataRow(
-                          cells: <DataCell>[
-                            DataCell(
-                              Text(
-                                context.l10n!.computer,
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ),
-                            DataCell(
-                              Text(
-                                game.computerRounds.toString(),
-                                style: const TextStyle(fontSize: 16),
-                              ),
-                            ),
-                            DataCell(
-                              Center(
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    Text(
-                                      game.computerScore.toString(),
-                                      style: const TextStyle(fontSize: 16),
-                                    ),
-                                    _checkWinner()
-                                        ? Container()
-                                        : Image.asset(PngAssets.cupIcon),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
+              const SizedBox(
+                height: 10,
               ),
-            ),
-            HomeButton(
-              game: game,
-              isBottom: true,
-              onPressed: () {
-                game.overlays.remove(GameOverMenu.id);
-                game.resumeEngine();
-                score.updateScore(game.playerScore, game.computerScore);
-                game.reset();
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => const MainMenu(),
-                ));
-              },
-            ),
-          ],
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(PngAssets.cupIcon),
+                  Text(
+                    context.l10n!.congrats,
+                    style: const TextStyle(
+                      color: AppColors.textTitleColor,
+                      fontSize: 29,
+                      fontWeight: FontWeight.w900,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleStrokeButton(
+                      iconPath: PngAssets.playAgainIcon,
+                      onPressed: () {
+                        game.overlays.remove(GameOverMenu.id);
+                        game.resumeEngine();
+                        game.reset();
+                      }),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  CircleStrokeButton(
+                    iconPath: PngAssets.homeIcon,
+                    onPressed: () {
+                      game.overlays.remove(GameOverMenu.id);
+                      game.resumeEngine();
+                      game.reset();
+                      Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const MainMenu(),
+                      ));
+                    },
+                  )
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
-  }
-
-  bool _checkWinner() => game.playerScore < game.computerScore;
-
-  String _getTextTitle(BuildContext context) {
-    return _checkWinner() ? context.l10n!.youWin : context.l10n!.youLose;
   }
 }

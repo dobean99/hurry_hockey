@@ -139,13 +139,12 @@ class StatisticsScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 15.0, right: 30),
               child: CircleStrokeButton(
-                width: 54,
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const MainMenu(),
                   ));
                 },
-                child: Image.asset(PngAssets.homeIcon),
+                iconPath:PngAssets.homeIcon,
               ),
             ),
           ),

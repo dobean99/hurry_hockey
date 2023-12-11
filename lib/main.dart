@@ -14,8 +14,6 @@ Future<void> main() async {
   await Flame.device.fullScreen();
   Flame.device.setLandscape();
   await initHive();
-  // Settings settings = await getSettings();
-  // AudioManager.instance.init([AudioAssets.bgAudio], settings);
   runApp(
     MultiProvider(
         providers: [

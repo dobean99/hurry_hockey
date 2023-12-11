@@ -13,12 +13,11 @@ class PauseButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.topRight,
+      alignment: Alignment.topLeft,
       child: Padding(
-        padding: const EdgeInsets.only(right: 20.0, top: 20.0),
+        padding: const EdgeInsets.only(left: 20.0, top: 20.0),
         child: CircleStrokeButton(
-          width: 50,
-          child: Image.asset(PngAssets.pauseIcon),
+          iconPath: PngAssets.pauseIcon,
           onPressed: () {
             game.pauseEngine();
             game.overlays.add(PauseMenu.id);

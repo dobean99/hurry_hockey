@@ -91,10 +91,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Inter
+    - family: CeraPro
       fonts:
-        - asset: assets/fonts/Inter-Regular.ttf
-        - asset: assets/fonts/Inter-Bold.ttf
+        - asset: assets/fonts/CeraPro-Regular.ttf
+        - asset: assets/fonts/CeraPro-Bold.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:
