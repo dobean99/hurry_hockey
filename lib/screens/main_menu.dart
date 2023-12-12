@@ -13,75 +13,80 @@ class MainMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseLayout(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: Stack(
+        alignment: Alignment.center,
         children: [
-          // Image.asset(PngAssets.logo),
-          Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 20.0, left: 20),
-              child: CircleStrokeButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => const SettingsScreen(),
-                    ),
-                  );
-                },
-                iconPath: PngAssets.settingsIcon,
-              ),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              CircleStrokeButton(
-                onPressed: () {
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        backgroundColor: AppColors.whiteColor,
-                        content: Text(
-                          context.l10n!.gameInstructions,
-                          style: const TextStyle(
-                            color: AppColors.textTitleColor,
-                            fontSize: 29,
-                            fontWeight: FontWeight.w900,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        actions: [
-                          CircleStrokeButton(
-                            iconPath: PngAssets.arrowRightIcon,
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                        actionsAlignment: MainAxisAlignment.center,
+              Image.asset(PngAssets.logo),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  CircleStrokeButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return AlertDialog(
+                            backgroundColor: AppColors.whiteColor,
+                            content: Text(
+                              context.l10n!.gameInstructions,
+                              style: const TextStyle(
+                                color: AppColors.textTitleColor,
+                                fontSize: 29,
+                                fontWeight: FontWeight.w900,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            actions: [
+                              CircleStrokeButton(
+                                iconPath: PngAssets.arrowRightIcon,
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                              ),
+                            ],
+                            actionsAlignment: MainAxisAlignment.center,
+                          );
+                        },
                       );
                     },
-                  );
-                },
-                iconPath: PngAssets.infoIcon,
-              ),
-              const SizedBox(
-                width: 40,
-              ),
-              CircleStrokeButton(
-                onPressed: () {
-                  Navigator.of(context).pushReplacement(
-                    MaterialPageRoute(
-                      builder: (context) => const GamePlay(),
-                    ),
-                  );
-                },
-                iconPath: PngAssets.playIcon,
+                    iconPath: PngAssets.infoIcon,
+                  ),
+                  const SizedBox(
+                    width: 40,
+                  ),
+                  CircleStrokeButton(
+                    onPressed: () {
+                      Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(
+                          builder: (context) => const GamePlay(),
+                        ),
+                      );
+                    },
+                    iconPath: PngAssets.playIcon,
+                  ),
+                ],
               ),
             ],
           ),
+          Positioned(
+              top: 0,
+              left: 0,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 15.0, left: 30),
+                child: CircleStrokeButton(
+                  onPressed: () {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) => const SettingsScreen(),
+                      ),
+                    );
+                  },
+                  iconPath: PngAssets.settingsIcon,
+                ),
+              ))
         ],
       ),
     );

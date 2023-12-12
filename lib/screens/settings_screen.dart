@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hurry_hockey/core/constants/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:hurry_hockey/config/assets/assets.dart';
-import 'package:hurry_hockey/config/l10n/l10n.dart';
 import 'package:hurry_hockey/screens/main_menu.dart';
 import 'package:hurry_hockey/widgets/commons/base_layout.dart';
 import 'package:hurry_hockey/widgets/commons/circle_stroke_button.dart';
-import 'package:hurry_hockey/widgets/commons/title_screen.dart';
 import '../models/models.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -17,57 +16,95 @@ class SettingsScreen extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Column(
-            children: [
-              TitleScreen(
-                text: context.l10n!.settings,
+          Center(
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.whiteColor.withOpacity(0.5),
               ),
-              const SizedBox(
-                height: 50,
-              ),
-              Row(
+              constraints: BoxConstraints(
+                  minWidth: 0,
+                  minHeight: 0,
+                  maxWidth: MediaQuery.sizeOf(context).width - 300,
+                  maxHeight: MediaQuery.sizeOf(context).height - 150),
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Selector<Settings, bool>(
                       selector: (_, settings) => settings.bgm,
                       builder: (context, bgm, __) {
-                        return CircleStrokeButton(
-                          isEnable: bgm,
-                          onPressed: () {
-                            bool newValue = !bgm;
-                            Provider.of<Settings>(context, listen: false).bgm =
-                                newValue;
-                          },
-                          iconPath: PngAssets.volumeIcon,
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            CircleStrokeButton(
+                              isEnable: bgm,
+                              onPressed: () {
+                                Provider.of<Settings>(context, listen: false)
+                                    .bgm = true;
+                              },
+                              iconPath: PngAssets.volumeIcon,
+                            ),
+                            const SizedBox(
+                              width: 40,
+                            ),
+                            CircleStrokeButton(
+                              isEnable: !bgm,
+                              onPressed: () {
+                                Provider.of<Settings>(context, listen: false)
+                                    .bgm = false;
+                              },
+                              iconPath: PngAssets.volumeOffIcon,
+                            )
+                          ],
                         );
                       }),
                   const SizedBox(
-                    width: 40,
+                    height: 20,
                   ),
-                  const SizedBox(
-                    width: 40,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Consumer<LocaleProvider>(
+                          builder: (context, provider, snapshot) {
+                        var lang = provider.locale;
+                        return CircleStrokeButton(
+                          isEnable: lang.languageCode == 'ru',
+                          onPressed: () {
+                            context
+                                .read<LocaleProvider>()
+                                .setLocale(const Locale('ru'));
+                          },
+                          iconPath: PngAssets.rusIcon,
+                        );
+                      }),
+                      const SizedBox(
+                        width: 40,
+                      ),
+                      Consumer<LocaleProvider>(
+                          builder: (context, provider, snapshot) {
+                        var lang = provider.locale;
+                        return CircleStrokeButton(
+                          isEnable: lang.languageCode == 'en',
+                          onPressed: () {
+                            context
+                                .read<LocaleProvider>()
+                                .setLocale(const Locale('en'));
+                          },
+                          iconPath: PngAssets.engIcon,
+                        );
+                      }),
+                    ],
                   ),
-                  Consumer<LocaleProvider>(
-                      builder: (context, provider, snapshot) {
-                    var lang = provider.locale;
-                    return CircleStrokeButton(
-                      onPressed: () {
-                        Locale locale = _changeLanguage(lang);
-                        context.read<LocaleProvider>().setLocale(locale);
-                      },
-                      iconPath: provider.getIcon(lang),
-                    );
-                  })
                 ],
               ),
-            ],
+            ),
           ),
           Positioned(
-            bottom: 0,
-            right: 0,
+            top: 0,
+            left: 0,
             child: Padding(
-              padding: const EdgeInsets.only(bottom: 15.0, right: 30),
+              padding: const EdgeInsets.only(top: 15.0, left: 30),
               child: CircleStrokeButton(
+                scale: 1.5,
                 onPressed: () {
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                     builder: (context) => const MainMenu(),
@@ -80,16 +117,5 @@ class SettingsScreen extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  _changeLanguage(Locale lang) {
-    switch (lang.languageCode) {
-      case 'en':
-        return AppLocalizations.supportedLocales[1];
-      case 'pt':
-        return AppLocalizations.supportedLocales[2];
-      case 'ru':
-        return AppLocalizations.supportedLocales[0];
-    }
   }
 }

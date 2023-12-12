@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hurry_hockey/config/assets/png_assets.dart';
-import 'package:hurry_hockey/config/l10n/l10n.dart';
 import 'package:hurry_hockey/core/constants/app_colors.dart';
 import 'package:hurry_hockey/game/hurry_hockey.dart';
 import 'package:hurry_hockey/screens/main_menu.dart';
 import 'package:hurry_hockey/widgets/commons/circle_stroke_button.dart';
-import 'package:hurry_hockey/widgets/commons/stroke_text.dart';
 
 class PauseMenu extends StatelessWidget {
   static const String id = 'PauseMenu';

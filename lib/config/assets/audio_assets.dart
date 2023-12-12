@@ -5,5 +5,5 @@ class AudioAssets {
 }
 
 extension on String {
-  String get src => '$this.mp3';
+  String get src => '$this.wav';
 }

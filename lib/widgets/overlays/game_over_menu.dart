@@ -19,7 +19,7 @@ class GameOverMenu extends StatelessWidget {
       child: Center(
         child: Container(
           decoration: BoxDecoration(
-            color: AppColors.whiteColor,
+            color: AppColors.whiteColor.withOpacity(0.5),
           ),
           constraints: BoxConstraints(
               minWidth: 0,
