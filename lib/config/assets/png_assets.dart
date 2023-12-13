@@ -24,6 +24,7 @@ class PngAssets {
   static String get backgroundGameplay => 'background_gameplay'.png;
 
 //get only file name .png ==> example "blue_ballon.png"
+  static String get player => 'player'.src;
   static String get background => 'background_image'.src;
   static String get clockIcon => 'clock'.src;
   const PngAssets._();
