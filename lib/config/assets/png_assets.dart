@@ -20,11 +20,22 @@ class PngAssets {
   static String get playAgainIcon => 'play_again_icon'.png;
 
   static String get cupIcon => 'cup_icon'.png;
+  static String get loseIcon => 'lose_icon'.png;
+
   static String get boardBackground => 'board_background'.png;
   static String get backgroundGameplay => 'background_gameplay'.png;
 
 //get only file name .png ==> example "blue_ballon.png"
   static String get player => 'player'.src;
+
+  // static String get backgroundGameplay => 'background_gameplay'.src;
+
+  static String get enemyA => 'enemy_A'.src;
+  static String get enemyB => 'enemy_B'.src;
+  static String get enemyC => 'enemy_C'.src;
+  static String get enemyD => 'enemy_D'.src;
+  static String get target => 'target'.src;
+
   static String get background => 'background_image'.src;
   static String get clockIcon => 'clock'.src;
   const PngAssets._();

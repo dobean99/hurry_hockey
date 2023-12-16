@@ -15,6 +15,7 @@ class GameOverMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isWin = game.isWin;
     return BaseLayout(
       child: Center(
         child: Container(
@@ -25,12 +26,12 @@ class GameOverMenu extends StatelessWidget {
               minWidth: 0,
               minHeight: 0,
               maxWidth: MediaQuery.sizeOf(context).width - 200,
-              maxHeight: MediaQuery.sizeOf(context).height - 100),
+              maxHeight: MediaQuery.sizeOf(context).height - 50),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               StrokeText(
-                text: context.l10n!.youWin,
+                text: isWin ? context.l10n!.youWin : context.l10n!.youLose,
               ),
               const SizedBox(
                 height: 10,
@@ -38,9 +39,9 @@ class GameOverMenu extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(PngAssets.cupIcon),
+                  Image.asset(isWin ? PngAssets.cupIcon : PngAssets.loseIcon),
                   Text(
-                    context.l10n!.congrats,
+                    isWin ? context.l10n!.congrats : context.l10n!.tryAgain,
                     style: const TextStyle(
                       color: AppColors.textTitleColor,
                       fontSize: 29,
